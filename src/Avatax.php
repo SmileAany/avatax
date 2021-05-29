@@ -74,7 +74,7 @@ class Avatax implements AvataxInterface
                 if ($addressResult['type'] == AvaTaxEnums::ADDRESS_ERROR_TYPE_DEFAULT){
                     $address['line1'] = 'GENERAL DELIVERY';
                 } else {
-                    event(new SaveDataEvent(avatax_get_save_data($order['customerCode'],$order['code'],$address,$this->getFromAddress(),$order,true,$addressResult)));
+                    event(new SaveDataEvent(avatax_get_save_data($order['customerCode'],$order['code'],$address,$this->getFromAddress(),$order,true,$addressResult),$type));
 
                     return avatax_return_error('address error',$addressResult);
                 }
@@ -82,7 +82,7 @@ class Avatax implements AvataxInterface
 
             $transActionResult = $this->transService->transaction($type,$address,$order,$this->getFromAddress());
 
-            event(new SaveDataEvent(avatax_get_save_data($order['customerCode'],$order['code'],$address,$this->getFromAddress(),$order,true,$transActionResult)));
+            event(new SaveDataEvent(avatax_get_save_data($order['customerCode'],$order['code'],$address,$this->getFromAddress(),$order,true,$transActionResult),$type));
 
             if (is_string($transActionResult)){
                 return avatax_return_error($transActionResult);

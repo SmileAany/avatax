@@ -9,6 +9,8 @@ class SaveDataListener
 {
     public function handle(SaveDataEvent $event)
     {
-        AvataxRecords::create($event->data);
+        if ($event->type == 'SalesInvoice'){
+            AvataxRecords::create($event->data);
+        }
     }
 }

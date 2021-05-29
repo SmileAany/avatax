@@ -6,8 +6,12 @@ class SaveDataEvent
 {
     public $data;
 
-    public function __construct(array $data)
+    public $type;
+
+    public function __construct(array $data,string $type)
     {
         $this->data = $data;
+
+        $this->type = $type;
     }
 }
