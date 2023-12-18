@@ -74,6 +74,10 @@ trait Address
                 throw new ConfigException('配置文件 shipFromAddress 参数数据异常');
             }
 
+
+
+
+
             $params = avatax_format_params($fromAddress);
 
             $this->fromAddress = [
